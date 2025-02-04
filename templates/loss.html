@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор втрат</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Калькулятор втрат</h1>
+        <form method="post">
+            <label>Частота відмов (ω): <input type="text" name="omega" value="0"></label>
+            <label>Середній час відновлення (t_b): <input type="text" name="tb" value="0"></label>
+            <label>Номінальна потужність (P_nom): <input type="text" name="pNom" value="0"></label>
+            <label>Тариф (T_m): <input type="text" name="tm" value="0"></label>
+            <label>Коефіцієнт планового простою (k_p): <input type="text" name="kp" value="0"></label>
+            <label>Прямі збитки від аварійного відключення (Z_per(0)): <input type="text" name="zPer0" value="0"></label>
+            <label>Прямі збитки від планового відключення (Z_per(plan)): <input type="text" name="zPlan" value="0"></label>
+            <button type="submit">Розрахувати</button>
+        </form>
+
+        {{if .MWnedAvar}}
+        <div class="result">
+            <h2>Результати:</h2>
+            <p>Очікувані втрати від відмов (M(W_нед.авар.)): {{.MWnedAvar}}</p>
+            <p>Очікувані втрати від планового простою (M(W_нед.план.)): {{.MWnedPlan}}</p>
+            <p>Загальні втрати (Z_пер.): {{.TotalLosses}}</p>
+        </div>
+        {{end}}
+
+        <a class="back-link" href="/">Повернутися на головну</a>
+    </div>
+</body>
+</html>

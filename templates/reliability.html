@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор надійності</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Калькулятор надійності</h1>
+        <form method="post">
+            <label>Кількість T-110 kV: <input type="text" name="T-110 kV" value="0"></label>
+            <label>Кількість T-35 kV: <input type="text" name="T-35 kV" value="0"></label>
+            <label>Кількість T-10 kV (Кабельна мережа): <input type="text" name="T-10 kV (Cable Network)" value="0"></label>
+            <label>Кількість T-10 kV (Повітряна мережа): <input type="text" name="T-10 kV (Overhead Network)" value="0"></label>
+            <label>Кількість B-110 kV (Газоізольований): <input type="text" name="B-110 kV (Gas-Insulated)" value="0"></label>
+            <label>Кількість B-10 kV (Масляний): <input type="text" name="B-10 kV (Oil)" value="0"></label>
+            <label>Кількість B-10 kV (Вакуумний): <input type="text" name="B-10 kV (Vacuum)" value="0"></label>
+            <label>Кількість Шинопровід 10 kV на з'єднання: <input type="text" name="Busbars 10 kV per Connection" value="0"></label>
+            <label>Кількість AV-0.38 kV: <input type="text" name="AV-0.38 kV" value="0"></label>
+            <label>Кількість ED 6,10 kV: <input type="text" name="ED 6,10 kV" value="0"></label>
+            <label>Кількість ED 0.38 kV: <input type="text" name="ED 0.38 kV" value="0"></label>
+            <label>Кількість PL-110 kV: <input type="text" name="PL-110 kV" value="0"></label>
+            <label>Кількість PL-35 kV: <input type="text" name="PL-35 kV" value="0"></label>
+            <label>Кількість PL-10 kV: <input type="text" name="PL-10 kV" value="0"></label>
+            <label>Кількість CL-10 kV (Траншея): <input type="text" name="CL-10 kV (Trench)" value="0"></label>
+            <label>Кількість CL-10 kV (Кабельний канал): <input type="text" name="CL-10 kV (Cable Channel)" value="0"></label>
+            <button type="submit">Розрахувати</button>
+        </form>
+
+        {{if .TotalFailureRate}}
+        <div class="result">
+            <h2>Результати:</h2>
+            <p>Частота відмов системи: {{.TotalFailureRate}}</p>
+            <p>Середній час відновлення: {{.AverageRecovery}}</p>
+            <p>Коефіцієнт аварійного простою: {{.AccidentalDowntime}}</p>
+            <p>Коефіцієнт планового простою: {{.PlannedDowntime}}</p>
+            <p>Імовірність подвійного відмови: {{.DualFailureRate}}</p>
+            <p>Фінальна частота відмов із перемиканням: {{.FinalFailureRate}}</p>
+        </div>
+        {{end}}
+
+        <a class="back-link" href="/">Повернутися на головну</a>
+    </div>
+</body>
+</html>
